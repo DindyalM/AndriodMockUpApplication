@@ -1,6 +1,7 @@
 package com.example.dindyal_mursingh_assignment1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ public class DashBoard extends AppCompatActivity {
     private Button button7;
     private Button button8;
     private Button button9;
-    private Button button10;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class DashBoard extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openActivity5();
+                openActivity5();
             }
         });
         button7 = (Button) findViewById(R.id.button7);
@@ -70,7 +71,7 @@ public class DashBoard extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openActivity8();
+                openActivity8();
             }
         });
 
@@ -88,11 +89,11 @@ public class DashBoard extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    //maps
-//    public void openActivity5(){
-//        Intent intent = new Intent(this,DashBoard.class);
-//        startActivity(intent);
-//    }
+    //maps
+    public void openActivity5(){
+        Intent intent = new Intent(this,MapsActivity.class);
+        startActivity(intent);
+    }
     public void openActivity6() {
         Intent intent = new Intent(this, Attendees.class);
         startActivity(intent);
@@ -101,10 +102,16 @@ public class DashBoard extends AppCompatActivity {
         Intent intent = new Intent(this, Sponsors.class);
         startActivity(intent);
     }
-    //    //Twitter
-//    public void openActivity8(){
-//        Intent intent = new Intent(this,DashBoard.class);
-//        startActivity(intent);
-//    }
+        //Twitter
+    public void openActivity8(){
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("twitter://user?screen_name=[user_name]"));
+            startActivity(intent);
+        } catch (Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://twitter.com/#!/[user_name]")));
+        }
+    }
 
 }
